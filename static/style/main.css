@@ -1,0 +1,164 @@
+.loginForm{
+
+    width: 400Px;
+    margin: 20px auto;
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 1px 2px 3px black;
+    background-color:black;
+    color: white;
+  }
+  .loginForm input{
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid white;
+    font-size: 1em;
+    width: 100%;
+    margin-bottom: 10;
+  }
+  
+  .loginForm label{
+    display: block;
+    margin: 20px 0 10px ;
+  }
+  .loginForm button{
+    font-size: 1.3em;
+    margin-top: 30px;
+    border-radius: 17px;
+    background: #fee996;
+    border:0;
+  }
+  .loginForm button:hover{
+    background-color: #02ABB0;
+  }
+ul
+{
+  margin-left: auto;
+  list-style: none; 
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 20px;
+    
+}
+.navbar a {
+    text-decoration: none;
+}
+/* .container{
+    margin: 24px 30px;
+} */
+.navbar p{
+    color: white;
+}
+.navbar .navbar-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    
+    text-transform: uppercase;
+}
+.navbar .navbar-nav .nav-link{
+    
+  font-weight: normal;
+    font-size: 15px;
+    letter-spacing: 0.5;
+    margin-left: 45px;
+    
+  }
+.navbar .navbar-nav .nav-link:hover{
+background: transparent;
+color : goldenrod;
+}
+.navbar .navbar-nav .nav-link::after{
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: transparent;
+ 
+}
+
+#Project{
+    background: #fff;
+   
+    align-items: center;
+    position: relative;
+    padding: 20px 30px;
+   
+
+  }
+  
+  .Img_project{
+    display:flex;
+    flex-wrap: wrap;
+  
+    
+    
+
+  }
+  #Project .carItem{
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 25px;
+    margin-left: 45px;
+    padding: 0;
+    vertical-align: middle;
+    text-align: center;
+      z-index: 99;
+  }
+  #Project .carItem .Car-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: all ease-in-out 0.4s;
+  }
+  
+  #Project .carItem:hover .Car-overlay{
+    opacity: 1;
+  }
+  
+  #Project .carItem .Car-overlay .car-info{
+    padding: 12em 0;
+  }
+  .carItem img{
+    transition: all ease-in-out 0.4s;
+    height: 300px;
+      z-index: 99;
+  }
+  .carItem:hover img{
+    transform:  scale(1.1);
+  }
+  .car-info h1{
+  font-size: 30px;
+    color: white;
+    margin-bottom: 10px;
+  }
+  .car-info h4{
+    font-size: 12px;
+    color: #02ABB0;
+  
+  }
+  
+  #Project .overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  }
+/* 
+.form-row{
+  display: flex;
+} */

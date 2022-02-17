@@ -1,0 +1,17 @@
+
+ <%- include('./partials/head.ejs') %>
+ 
+ <%- include('./partials/nav.ejs') %>
+
+<form action="/login/" method="post" class="loginForm">
+    <h2 style="text-align: center;"> <i class="fas fa-user"></i> Sign In</h2>
+    <%- include ('./partials/messages') %>
+    <input type="text" name="email" id="email" placeholder="Email"> 
+    
+     <input type="password" name="password" id="password" placeholder="Password"> 
+     
+     <button class="btn brown darken-1" type="submit">Sign In</button>
+      <div style="margin-top: 20px;"> <span>New to the Gift Family? </span><a style="font-weight: bold;" href="/signup">Sign Up</a></div>
+
+
+ </form>
