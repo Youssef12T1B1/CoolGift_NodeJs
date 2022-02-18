@@ -1,0 +1,53 @@
+
+ <%- include('../partials/head.ejs') %>
+ 
+ <%- include('../partials/nav.ejs') %>
+
+<hr>
+
+<div class="fixed-action-btn">
+    <a href="add-category" class="btn-floating btn-large waves-effect waves-lightred"><i class="fas fa-plus"></i>Add Category</a>
+</div>
+
+
+<form action="" method="post" >
+    <table class="table">
+        <thead class="thead">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>description</th>
+                <th>Action</th>
+            
+            </tr>
+
+        </thead>
+        <tbody>
+            <% for (var i=0 ; i< categories.length;++i){%>
+            <tr>
+                <td><%= i+1 %></td>
+                <td><%= categories[i].title %></td>
+                <td><%= categories[i].description  %></td>
+               
+                <td>
+
+                    <a href="update-category?id=<%= categories[i]._id  %>" class="btn border-shadow update"> <span class="text-gradient">
+                        <i class="fas fa-pencil-alt"></i>
+                    </span> </a>
+                    <a  class="btn border-shadow delete" data-id= <%= categories[i]._id  %> > <span class="text-gradient">
+                        <i class="fas fa-times"></i>
+                    </span> </a>
+                </td>
+               
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    
+
+
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script src="/main.js"></script>

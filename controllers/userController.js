@@ -5,7 +5,7 @@ const passport = require('passport')
 
 module.exports.signup_post = (req,res)=>{
 
-    const {username, email, password, password2} = req.body
+    const {username, email,password, password2} = req.body
     let errors =[]
    
      if (password !== password2){

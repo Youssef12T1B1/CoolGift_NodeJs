@@ -10,6 +10,7 @@ const session = require('express-session');
 const flash = require('connect-flash/lib/flash');
 const passport = require('passport');
 const connectDb = require('./config/db')
+const fileUpload = require('express-fileupload')
 
 connectDb()
 const app = express()
@@ -24,6 +25,9 @@ app.use(express.static('static'));
 app.use(morgan('tiny'))
 
 app.use(bodyparser.urlencoded({extended: true}))
+
+// upload 
+app.use(fileUpload())
 
 //ejs
 app.set('view engine', 'ejs')
@@ -53,7 +57,7 @@ app.use((req, res,next)=>{
 app.use(indexRoute)
 app.use(userRoute)
 app.use(productRoute)
-app.use(adminRoute)
+app.use('/admin',adminRoute)
 
 const PORT = require('./config/.env').PORT || 5000
 

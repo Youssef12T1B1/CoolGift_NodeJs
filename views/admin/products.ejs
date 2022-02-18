@@ -1,0 +1,59 @@
+
+ <%- include('../partials/head.ejs') %>
+ 
+ <%- include('../partials/nav.ejs') %>
+
+<hr>
+
+<div class="fixed-action-btn">
+    <a href="add-product" class="btn-floating btn-large waves-effect waves-lightred"><i class="fas fa-plus"></i>Add Products</a>
+</div>
+
+
+<form action="" method="post" >
+    <table class="table">
+        <thead class="thead">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>description</th>
+                <th>Category</th>
+                <th>price</th>
+                <th>Product_Img</th>
+                <th>Action</th>
+            
+            </tr>
+
+        </thead>
+        <tbody>
+            <% for (var i=0 ; i< products.length;++i){%>
+            <tr>
+                <td><%= i+1 %></td>
+                <td><%= products[i].title %></td>
+                <td><%= products[i].description  %></td>
+                <td><%= products[i].category  %></td>
+                <td><%= products[i].price  %></td>
+                <td><%= products[i].image  %></td>
+               
+                <td>
+
+                    <a href="update-product?id=<%= products[i]._id  %>" class="btn border-shadow update"> <span class="text-gradient">
+                        <i class="fas fa-pencil-alt"></i>
+                    </span> </a>
+                    <a  class="btn border-shadow delete" data-id= <%= products[i]._id  %> > <span class="text-gradient">
+                        <i class="fas fa-times"></i>
+                    </span> </a>
+                </td>
+               
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    
+
+
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script src="/main.js"></script>
