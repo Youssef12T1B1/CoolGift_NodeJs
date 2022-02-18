@@ -4,6 +4,8 @@ const morgan = require('morgan')
 const bodyparser = require('body-parser')
 const indexRoute = require('./routes/indexRoute')
 const userRoute = require('./routes/userRoute')
+const productRoute = require('./routes/productRoute')
+const adminRoute = require('./routes/adminRoute')
 const session = require('express-session');
 const flash = require('connect-flash/lib/flash');
 const passport = require('passport');
@@ -50,6 +52,8 @@ app.use((req, res,next)=>{
 //routes
 app.use(indexRoute)
 app.use(userRoute)
+app.use(productRoute)
+app.use(adminRoute)
 
 const PORT = require('./config/.env').PORT || 5000
 
