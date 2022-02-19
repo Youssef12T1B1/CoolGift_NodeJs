@@ -1,4 +1,5 @@
 const { redirect } = require('express/lib/response')
+const mkdirp = require('mkdirp')
 const Category = require('../models/Category')
 const Product = require('../models/Product')
 
@@ -27,19 +28,29 @@ module.exports.create_category = (req,res)=>{
 }
 
 module.exports.create_product = (req,res)=>{
+    
     if(!req.body){
         res.status(400).send({message:'Empty!!!'})
         return
     }
+  var imagefile = typeof req.files.image !== 'undefined' ? req.files.image.name: ""
+
+  var price = parseFloat(req.body.price).toFixed(2)
      const product = new Product({
+
          title : req.body.title,
+         price : price,
          description : req.body.description,
-        
+         image : imagefile,
+         category : req.body.category,
+
      })
 
     product
-      .save(category)
+      .save(product)
       .then(data=>{
+          mkdirp('public/Images_Product/'+product._id)
+
           //res.send(data)
           res.redirect('/admin/add-product')
       }) 
@@ -83,6 +94,40 @@ module.exports.findCat = (req,res)=>{
 }
 
 }
+
+
+module.exports.findPro = (req,res)=>{
+    if(req.query.id){
+        const id=req.query.id
+         Product.findById(id)
+         .then(data=>{
+             if(!data){
+                res.status(404).send({message:'category not found'})
+
+             }else{
+                res.send(data)
+             }
+            
+        })
+        .catch(err=>{
+            res.status(500).send({
+                message: err.message || 'Error Occurred while retriving user information'
+            })
+        })
+
+
+    }else{
+    Product.find()
+    .then(product=>{
+        res.send(product)
+    })
+    .catch(err=>{
+        res.status(500).send({
+            message: err.message || 'Error Occurred while retriving users information'
+        })
+    })
+}}
+
 module.exports.update_category = (req,res)=>{
     if(!req.body){
         res.status(400).send({message:'Empty!!!'})
@@ -103,6 +148,28 @@ module.exports.update_category = (req,res)=>{
        })
 
 }
+
+module.exports.update_product = (req,res)=>{
+    if(!req.body){
+        res.status(400).send({message:'Empty!!!'})
+        return
+    }
+    const id = req.params.id
+    Product.findByIdAndUpdate(id,req.body, {useFindAndModify: false})
+       .then(data=>{
+           if(!data){
+            res.status(404).send({message:`Cannot Update product ${id}`})
+           }else{
+               res.send(data)
+              
+           }
+       })
+       .catch(err=>{
+        res.status(500).send({message:'Error Update product'})
+       })
+
+}
+
 module.exports.delete_category = (req,res)=>{
 
     const id = req.params.id

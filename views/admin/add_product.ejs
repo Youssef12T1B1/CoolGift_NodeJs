@@ -8,26 +8,30 @@
       
 
      <a href="/admin/products"><i class="fas fa-angle-double-left"></i>All Products</a>
-     <form action="/api/categories" method="post" enctype="multipart/form-data" id="createCategory">
+     <form action="/api/products" method="post" class="loginForm" enctype="multipart/form-data" id="createProduct">
      
      
-             <input type="text" style="color: aliceblue; background-color: black;" name="title" id="title" >
-             <label for="title">title</label>
+        <label for="title">title</label>     
+        <input type="text" style="color: aliceblue; background-color: black;" name="title" id="title" >
+             
  
-     
+        <label for="description">description</label>
              <input type="text" style="color: aliceblue;background-color: black;" name="description" id="description" > 
-             <label for="description">description</label>
-
-             <input type="number" style="color: aliceblue;background-color: black;" name="price" id="price" > 
+            
              <label for="price">price</label>
+             <input type="number" step="0.01" style="color: aliceblue;background-color: black;" name="price" id="price" > 
+            
 
              <label for="description">Category</label>
-             <select name="category" id="category">
-                 <option value="">hh</option>
-                 <option value="">hh</option>
+             <select name="category" id="category" style="margin-bottom: 40px; width: 100%; height: 40px;">
+                <% for (var i=0 ; i< categories.length;++i){%>
+                 <option value="<%= categories[i].title %>"><%= categories[i].title %></option>
+                 
+                 <% } %>
              </select>
-             <input type="file" name="image">
-             <img src=""  id='imgpreview'alt="">
+
+             <input type="file" name="image" id="image" >
+             <img src="#"  id="imgpreview" alt="" >
     
      
          <input type="submit" value="Save" class="btn">
@@ -35,6 +39,8 @@
    
      
      </form>
+
+  
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script src="/main.js"></script>

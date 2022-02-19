@@ -23,6 +23,29 @@ $("#UpdateCategory").submit(function(event){
     })
 })
 
+$("#UpdateProject").submit(function(event){
+    event.preventDefault()
+     var unindexed_array = $(this).serializeArray()
+     var data = {}
+
+     $.map(unindexed_array, function(n,i){
+         data[n['name']] = n['value']
+     })  
+    
+   
+     var request = {
+        "url" : `http://localhost:3000/api/products/${data.id}`,
+        "method": "PUT",
+        "data": data
+    }
+
+    $.ajax(request).done(function(response){
+        alert('Product  Updated Successfully')
+    })
+})
+
+
+
 if(window.location.pathname == '/admin/categories'){
     $ondelete = $(".table tbody td a.delete")
     $ondelete.click(function(){
@@ -43,3 +66,20 @@ if(window.location.pathname == '/admin/categories'){
 
     })
 }
+
+
+function readURL(input){
+    if (input.files && input.files[0]){
+        var reader = new FileReader()
+        reader.onload = function(e){
+            $("#imgpreview").attr('src', e.target.result).width(80).height(80)
+        }
+        reader.readAsDataURL(input.files[0])
+
+
+    }
+} 
+
+$("#image").change(function(){
+    readURL(this)
+})

@@ -11,6 +11,7 @@ const flash = require('connect-flash/lib/flash');
 const passport = require('passport');
 const connectDb = require('./config/db')
 const fileUpload = require('express-fileupload')
+const expressValidator = require('express-validator')
 
 connectDb()
 const app = express()
@@ -52,6 +53,25 @@ app.use((req, res,next)=>{
     next()
 })
  
+app.use(expressValidator({
+
+customValidators:{
+    isImage : function(value, filename){
+        var extention = (path.extname(filename)).toLowerCase()
+        switch(extention){
+            case '.jpg':
+                return '.jpg'
+            case '.png':
+                return '.png'
+            case '':
+                return 'jpg'    
+            default:
+                return false    
+        }
+    }
+}
+}
+))
 
 //routes
 app.use(indexRoute)

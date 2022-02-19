@@ -235,3 +235,7 @@ border-color: #32383e;
         position: relative;
     }
 }
+
+#imgpreview{
+  margin: 20px;
+}
