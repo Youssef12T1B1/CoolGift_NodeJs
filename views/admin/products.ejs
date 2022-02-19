@@ -36,9 +36,9 @@
                 <td><%= parseFloat(products[i].price).toFixed(2)  %></td>
                 <td><% if(products[i].image == "") { %>
                 
-                <img src="/Images/default.png" alt="">
+                <img style="width: 100px;height: 50px;" src="/Images/default.png" alt="">
                 <% }else { %>
-                    <img style="width: 100px;height: 50px;" src="/Images_Product/<%= products[i].image%>" alt="">
+                    <img style="width: 100px;height: 50px;" src="/Images_Product/<%= products[i]._id %>/<%= products[i].image %>" alt="">
                     <% } %>
                 </td>
                

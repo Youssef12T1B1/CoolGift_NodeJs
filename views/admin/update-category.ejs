@@ -7,7 +7,7 @@
       
 
      <a href="/admin/categories"><i class="fas fa-angle-double-left"></i>All Categories</a>
-     <form action="/api/categories" method="post" class="col s12" id="UpdateCategory">
+     <form action="/api/categories" method="post" class="loginForm" id="UpdateCategory">
         <input type="hidden" name="id" value="<%= category._id %>">
      
              <input type="text" style="color: aliceblue; background-color: black;" name="title" id="title"  value="<%= category.title %>">

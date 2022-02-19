@@ -1,5 +1,5 @@
 const { redirect } = require('express/lib/response')
-const mkdirp = require('mkdirp')
+var mkdir = require('mkdirp')
 const Category = require('../models/Category')
 const Product = require('../models/Product')
 
@@ -33,7 +33,13 @@ module.exports.create_product = (req,res)=>{
         res.status(400).send({message:'Empty!!!'})
         return
     }
-  var imagefile = typeof req.files.image !== 'undefined' ? req.files.image.name: ""
+
+  if(!req.files){imageFile = ""}
+     else{
+        var imageFile = typeof(req.files.image) !== "undefined" ? req.files.image.name : ""
+    }
+  req.checkBody('image', 'image is not valid').isImage(imageFile); 
+
 
   var price = parseFloat(req.body.price).toFixed(2)
      const product = new Product({
@@ -41,7 +47,7 @@ module.exports.create_product = (req,res)=>{
          title : req.body.title,
          price : price,
          description : req.body.description,
-         image : imagefile,
+         image : imageFile,
          category : req.body.category,
 
      })
@@ -49,7 +55,26 @@ module.exports.create_product = (req,res)=>{
     product
       .save(product)
       .then(data=>{
-          mkdirp('public/Images_Product/'+product._id)
+        mkdir('static/Images_Product/'+product._id ,(function(err){
+              return console.log(err);
+          }))
+          mkdir('static/Images_Product/'+product._id + '/gallery',(function(err){
+            return console.log(err);
+        }))
+        mkdir('static/Images_Product/'+product._id + '/gallery/thumbs',(function(err){
+            return console.log(err);
+        }))
+
+        if(imageFile != ""){
+            var productImage = req.files.image
+            var path = 'static/Images_Product/'+product._id+ '/'+ imageFile
+            productImage.mv(path, function(err){
+
+                return console.log(err);
+            })
+
+        }
+
 
           //res.send(data)
           res.redirect('/admin/add-product')
@@ -185,5 +210,23 @@ module.exports.delete_category = (req,res)=>{
        })
        .catch (err=>{
            res.status(500).send({message:'could not delete Category'})
+       })
+}
+
+module.exports.delete_product = (req,res)=>{
+
+    const id = req.params.id
+    Product.findByIdAndDelete(id)
+       .then(data=>{
+           if(!data){
+               res.status(404).send({message:`Cannot delete Product ${id}`})
+           }
+           else{
+               res.send({message: 'Product was deleted Successfully' })
+
+           }
+       })
+       .catch (err=>{
+           res.status(500).send({message:'could not delete Product'})
        })
 }

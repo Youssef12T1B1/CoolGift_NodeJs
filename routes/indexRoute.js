@@ -16,6 +16,6 @@ router.delete('/api/categories/:id', adminController.delete_category)
 router.post('/api/products', adminController.create_product)
  router.put('/api/products/:id', adminController.update_product)
 router.get('/api/products', adminController.findPro)
-// router.delete('/api/products/:id', adminController.delete_product)
+router.delete('/api/products/:id', adminController.delete_product)
 
 module.exports = router

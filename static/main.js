@@ -67,6 +67,26 @@ if(window.location.pathname == '/admin/categories'){
     })
 }
 
+if(window.location.pathname == '/admin/products'){
+    $ondelete = $(".table tbody td a.delete")
+    $ondelete.click(function(){
+      var id = $(this).attr("data-id")
+      
+     var request = {
+        "url" : `http://localhost:3000/api/products/${id}`,
+        "method": "DELETE",
+      
+    }
+
+    if(confirm("Are u sure?")){
+        $.ajax(request).done(function(response){
+            alert('Product Deleted Successfully')
+            location.reload()
+        })
+    }
+
+    })
+}
 
 function readURL(input){
     if (input.files && input.files[0]){
@@ -81,5 +101,7 @@ function readURL(input){
 } 
 
 $("#image").change(function(){
-    readURL(this)
+ 
+        readURL(this) 
+    
 })

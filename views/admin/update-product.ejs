@@ -25,7 +25,8 @@
              <select name="category" id="category" style="margin-bottom: 40px; width: 100%; height: 40px;">
                
                 <% for (var i=0 ; i< categories.length;++i){%>
-                    <option value="<%= categories[i].title %>"><%= categories[i].title %></option>
+                    <option value="<%= categories[i].title %>"  <%= product.category == categories[i].title ? 'selected':''  %>><%= categories[i].title %></option>
+                    
                     
                     <% } %>
                
@@ -33,8 +34,8 @@
                 
              </select>
 
-             <input type="file" name="image" id="image"  value="<%= product.image %>">
-             <img src="#"  id="imgpreview" alt="" >
+             <input type="file" name="image" id="image"  placeholder="<% product.image %>">
+             <img src=""  id="imgpreview" alt="" >
     
      
          <input type="submit" value="Save" class="btn">
