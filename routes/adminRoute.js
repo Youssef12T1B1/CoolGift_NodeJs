@@ -57,9 +57,11 @@ router.get('/update-product', (req,res)=>{
   var categories 
   axios.get('http://localhost:3000/api/products/',{params:{id: req.query.id}})
   .then(function(productData){
+    
   axios.get('http://localhost:3000/api/categories')
   .then(function(response){
        categories  =response.data
+       
        res.render('admin/update-product', {product:productData.data,categories:categories})
     })
      

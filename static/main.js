@@ -44,7 +44,16 @@ $("#UpdateProject").submit(function(event){
     })
 })
 
-
+Dropzone.option.dropzoneForm = {
+    acceptedFiles  : "images/*",
+    init: function(){
+this.on('queuecomplete', (file)=>{
+    setTimeout(()=>{
+        location.reload()
+    }, 1000)
+})
+    }
+}
 
 if(window.location.pathname == '/admin/categories'){
     $ondelete = $(".table tbody td a.delete")

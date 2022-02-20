@@ -1,4 +1,5 @@
 const { redirect } = require('express/lib/response')
+const { fstat } = require('fs-extra')
 var mkdir = require('mkdirp')
 const Category = require('../models/Category')
 const Product = require('../models/Product')
@@ -185,6 +186,15 @@ module.exports.update_product = (req,res)=>{
            if(!data){
             res.status(404).send({message:`Cannot Update product ${id}`})
            }else{
+            // // var galleryDir = 'static/Images_Product/' + id+ '/gallery';
+            // // var galleryImages = null;
+            // // fs.readdir(galleryDir, function(err,files){
+            // //         if(err){
+            // //             console.log(err);
+            // //         }else{
+            // //             galleryImages = files
+            // //         }
+            // })
                res.send(data)
               
            }
