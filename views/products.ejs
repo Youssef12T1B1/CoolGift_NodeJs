@@ -5,18 +5,33 @@
 
 <div class="product_cont">
 <div class="ProductList">
+    <ul>
+        <li><a href=""><span>All Products</span></a></li>
+        <% for (var i=0 ; i< categories.length;++i){%>
+            <li><a href="/products/<%= categories[i].title %>"><span><%= categories[i].title %></span></a></li>
+
+           
+           <% }%>
+    </ul>
     
-    <a href=""><p>All Product</p></a>
-    <a href=""><p>Posters</p></a>
-    <a href=""><p>222</p></a>
-    <a href=""><p>222</p></a>
+ 
 
 </div>
 <div class="showProduct">
 
-    <a href=""><p>All Product</p></a>
-    <a href=""><p>Posters</p></a>
-    <a href=""><p>222</p></a>
-    <a href=""><p>222</p></a>
+
+      
+        <% for (var i=0 ; i< products.length;++i){%>
+            <div  class="Product-desplay">
+            <li style="font-weight: bold; text-transform:uppercase;"><span><%= products[i].title %></span></li>
+            <li> <span><%= products[i].price %> DH</span></li>
+            <a href="/products/<%= products[i].category %>/<%= products[i]._id %>">
+            <img src="/Images_product/<%= products[i]._id %>/<%= products[i].image %>" alt="" class="Product_Img">
+        </a>
+        <li><a href="/products/<%= products[i].category %>/<%= products[i]._id %>"><span>More Details</span></a></li>
+
+    </div>
+           <% }%>
+    
 </div>
 </div>

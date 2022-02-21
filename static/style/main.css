@@ -29,10 +29,32 @@
   }
 .product_cont{
   margin: 20px 30px;
-  column-count: 2;
-  column-gap: 40px;
+display: flex;
+flex-direction:row
 
+  
+}
+.Product_Img{
+  width: 150px;
+  height: 150px;
+}
 
+.ProductList ul li{
+  
+  border: solid 1px black;
+  width: 150px;
+  font-weight: bold;
+  padding: 5px;
+text-align: center;  
+}
+.Product-desplay {
+  margin-left: 100px;
+  margin-bottom: 20px;
+  display: inline-block
+}
+
+.Product-desplay li{
+  list-style:none;
 }
   .loginForm button{
     font-size: 1.3em;
