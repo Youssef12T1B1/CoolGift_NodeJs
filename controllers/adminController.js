@@ -240,3 +240,18 @@ module.exports.delete_product = (req,res)=>{
            res.status(500).send({message:'could not delete Product'})
        })
 }
+
+module.exports.byCategory = (req,res)=>{
+     
+        const category= req.params.category
+    
+    Product.find({category:category})
+    .then(product=>{
+        res.send(product) 
+    })
+    .catch(err=>{
+        res.status(500).send({
+            message: err.message || 'Error Occurred while retriving users information'
+        })
+    })
+}
