@@ -1,35 +1,66 @@
 <%- include('./partials/head.ejs') %>
  
 <%- include('./partials/nav.ejs') %>
-
+<%- include ('./partials/messages') %>
 <% if (typeof cart !== 'undefined') {%>
+    <h1 style="margin: 20px 35px;">My Cart </h1>
+  
 <table class="table">
 <tr>
     <th>Image</th>
     <th>Title</th>
     <th>Price</th>
     <th>Quantity</th>
-    <th></th>
-    <th>Total</th>
+    <th>Action</th>
+    <th>SubTotal</th>
 
 
 </tr>
+<% var Total = 0 %>
 <% cart.forEach(function(product){%>
-    <% const tot = parseFloat(product.qty * product.price)%>
+    <% const productTotal = parseFloat(product.qty * product.price)%>
+    <% Total += productTotal %>
+
     <tr>
-        <td><img style="width: 100px;height: 50px;" src="<%= product.Image %>" alt=""></td>
+        <!-- <% if (product.Image) {%>
+            <% console.log(product.Image) %> -->
+
+            <td><img style="width: 100px;height: 50px;" src="<%= product.Image %>" alt=""></td>
+
+        <!-- <% } else {%>
+            <td>  <img src="/Images/default.png" alt="" class="Product_Img"></td>
+       <% } %> -->
         <td> <%= product.title %></td>
         <td> <%= product.price %> DH</td>
         <td> <%= product.qty %></td>
-        <td> <a href="/cart/update/<%= product.title %>?action=add">+</a>
+        <td style="margin: 10px;"> <a href="/cart/update/<%= product.title %>?action=add">+</a>
          <a href="/cart/update/<%= product.title %>?action=remove">-</a>
          <a href="/cart/update/<%= product.title %>?action=clear">Clear</a></td>
-   <td><%= tot %></td>
+   <td><%= productTotal %></td>
+    </tr>
+    <%})%>
+    <tr> <td  colspan="6" ><b>Total: </b> <%= Total%> DH</td> </tr>
+    <tr> <td  colspan="6" ><a class="btn  border-shadow delete" href="/cart/clear">Clear Cart</a>
+       <a class="btn  border-shadow buynow" href="#">Buy Now</a></td>
+    
     </tr>
 
-    <%})%>
 </table>
 
     <% }else { %>
 <h3 class="text-center">Your cart is empty</h3>
     <% } %>
+
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ 
+<script>
+    
+$(function(){
+$('a.delete').on('click', function(){
+    if(!confirm('are u sure'))
+        return false
+})
+})
+
+</script>    

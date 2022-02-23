@@ -77,6 +77,7 @@ module.exports.create_product = (req,res)=>{
         }
        
 
+        
 
           //res.send(data)
           res.redirect('/admin/add-product')

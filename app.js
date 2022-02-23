@@ -56,6 +56,7 @@ app.use((req, res,next)=>{
 
 app.get('*', (req,res,next)=>{
     res.locals.cart = req.session.cart;
+    res.locals.user = req.user || null 
     next();
 })
  

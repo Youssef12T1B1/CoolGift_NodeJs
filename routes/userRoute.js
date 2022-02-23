@@ -3,12 +3,18 @@ const router = express.Router()
 const userController = require('../controllers/userController')
 
 
+const User = require('../models/User')
 
 router.get('/login', (req,res)=>{
+
+    if(res.locals.user) res.redirect('/')
+
     res.render('login')
 })
 
 router.get('/signup', (req,res)=>{
+    if(res.locals.user) res.redirect('/')
+
     res.render('signup')
 })
 router.post('/signup', userController.signup_post )
