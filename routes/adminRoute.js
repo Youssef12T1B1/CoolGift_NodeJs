@@ -11,15 +11,7 @@ router.get('/add-category', (req,res)=>{
   res.render('admin/add-category')
 })
 
-router.get('/product', (req,res)=>{
-  axios.get('http://localhost:3000/api/productsbyCategory',{params:{category: req.query.category}})
-  .then(function(response){
-      res.render('products_Category', {products:response.data})
-  })
-  .catch(err=>{
-      res.send(err)
-  })
-})
+
 
 router.get('/add-product',(req,res)=>{
   axios.get('http://localhost:3000/api/categories')

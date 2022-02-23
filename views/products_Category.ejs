@@ -6,7 +6,7 @@
 <div class="product_cont">
     <div class="ProductList">
         <ul>
-            <li><a href=""><span>All Products</span></a></li>
+            <li><a href="/products"><span>All Products</span></a></li>
             <% for (var i=0 ; i< categories.length;++i){%>
                 <li><a href="/product/<%= categories[i].title %>"><span><%= categories[i].title %></span></a></li>
     
@@ -17,22 +17,31 @@
      
     
     </div>
+    
 <div class="showProduct">
 
-
+<% if (products.length > 0) { %>
       
         <% for (var i=0 ; i< products.length;++i){%>
             <div  class="Product-desplay">
-                <a href="/products/<%= products[i].category %>/<%= products[i]._id %>">
-                    <img src="/Images_product/<%= products[i]._id %>/<%= products[i].image %>" alt="" class="Product_Img">
+                <a href="/product/<%= products[i].category %>/<%= products[i].title %>">
+                    <% if(products[i].image == "") { %>
+                        <img src="/Images/default.png" alt="" class="Product_Img">
+                      
+                        <% }else { %>
+                            <img src="/Images_Product/<%= products[i]._id %>/<%= products[i].image %>" alt="" class="Product_Img">
+                            <% } %>
+                   
                 </a>
             <li style="margin-top:10px;font-weight: bold; text-transform:uppercase;"><span><%= products[i].title %></span></li>
             <li> <span><%= products[i].price %> DH</span></li>
            
-        <li><a href="/products/<%= products[i].category %>/<%= products[i]._id %>"><span>More Details</span></a></li>
+        <li><a href="/product/<%= products[i].category %>/<%= products[i].title %>"><span>More Details</span></a></li>
 
     </div>
-           <% }%>
-    
+           <% } %>
+        <%} else{ %>
+    <div style="text-align: center;font-weight: bold">NO Products Yet </div>
+    <% }%>
 </div>
 </div>

@@ -7,6 +7,7 @@ router.get('/', (req,res)=>{
     res.render('index')
 })
 
+
 router.post('/api/categories', adminController.create_category)
 router.put('/api/categories/:id', adminController.update_category)
 router.get('/api/categories', adminController.findCat)
@@ -18,6 +19,5 @@ router.put('/api/products/:id', adminController.update_product)
 router.get('/api/products', adminController.findPro)
 router.delete('/api/products/:id', adminController.delete_product)
 
-router.get('/api/productsbyCategory/:category', adminController.byCategory)
 
 module.exports = router

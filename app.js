@@ -6,6 +6,7 @@ const indexRoute = require('./routes/indexRoute')
 const userRoute = require('./routes/userRoute')
 const productRoute = require('./routes/productRoute')
 const adminRoute = require('./routes/adminRoute')
+const cartRoute = require('./routes/cartRoute')
 const session = require('express-session');
 const flash = require('connect-flash/lib/flash');
 const passport = require('passport');
@@ -52,6 +53,11 @@ app.use((req, res,next)=>{
     res.locals.error = req.flash('error')
     next()
 })
+
+app.get('*', (req,res,next)=>{
+    res.locals.cart = req.session.cart;
+    next();
+})
  
 app.use(expressValidator({
 
@@ -77,8 +83,9 @@ customValidators:{
 app.use(indexRoute)
 app.use(userRoute)
 app.use(productRoute)
-app.use('/admin',adminRoute)
 
+app.use('/admin',adminRoute)
+app.use(cartRoute)
 const PORT = require('./config/.env').PORT || 5000
 
 

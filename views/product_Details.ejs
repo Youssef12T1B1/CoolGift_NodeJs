@@ -1,0 +1,45 @@
+<%- include('./partials/head.ejs') %>
+ 
+<%- include('./partials/nav.ejs') %>
+<hr>
+
+<%- include ('./partials/messages') %>
+
+
+<div class="product_cont">
+    <div class="ProductList">
+        <ul>
+            <li><a href="/products"><span>All Products</span></a></li>
+            <% for (var i=0 ; i< categories.length;++i){%>
+                <li><a href="/product/<%= categories[i].title %>"><span><%= categories[i].title %></span></a></li>
+    
+               
+               <% }%>
+        </ul>
+        
+     
+    
+    </div>
+<div class="showProduct">
+
+ 
+     
+                <div  class="Product-desplay" >
+                    
+                        <% if(product.image == "") { %>
+                            <img src="/Images/default.png" alt="" class="Product_Img">
+                          
+                            <% }else { %>
+                                <img src="/Images_Product/<%= product._id %>/<%= product.image %>" alt="" class="Product_Img">
+                                <% } %>
+                       
+                 
+                <li style="margin-top:10px;font-weight: bold; text-transform:uppercase;"><span><%= product.title %></span></li>
+                <li> <span><%= parseFloat(product.price) %> DH</span></li>
+                <li> <span><%= product.description %> </span></li>
+               
+            <li><a href="/cart/add/<%= product.title %>"><span>Add To Card</span></a></li>
+    
+        </div>
+           
+    </div>

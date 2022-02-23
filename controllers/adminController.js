@@ -75,6 +75,7 @@ module.exports.create_product = (req,res)=>{
             })
 
         }
+       
 
 
           //res.send(data)
@@ -128,7 +129,7 @@ module.exports.findPro = (req,res)=>{
          Product.findById(id)
          .then(data=>{
              if(!data){
-                res.status(404).send({message:'category not found'})
+                res.status(404).send({message:'Product not found'})
 
              }else{
                 res.send(data)
@@ -239,19 +240,4 @@ module.exports.delete_product = (req,res)=>{
        .catch (err=>{
            res.status(500).send({message:'could not delete Product'})
        })
-}
-
-module.exports.byCategory = (req,res)=>{
-     
-        const category= req.params.category
-    
-    Product.find({category:category})
-    .then(product=>{
-        res.send(product) 
-    })
-    .catch(err=>{
-        res.status(500).send({
-            message: err.message || 'Error Occurred while retriving users information'
-        })
-    })
 }
