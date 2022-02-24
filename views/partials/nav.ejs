@@ -1,9 +1,9 @@
-
+<nav  class="navbar container">
+    
+  <a class="navbar-brand" style="text-decoration: none;" href="/"> <i class="fa-solid fa-gifts fa-3x"> </i> Gift Shop</a>
 <% if(user){ %>
 <% if (user.email == 'admin@gmail.com' ){ %>
-  <nav  class="navbar container">
-    
-    <a class="navbar-brand" style="text-decoration: none;" href="/"> <i class="fa-solid fa-gifts fa-3x"> </i> Gift Shop</a>
+
       <ul class="navbar-nav" >
         <li >
           <a class="nav-link" href="/admin/products" >PRODUCTS</a>
@@ -43,8 +43,7 @@
 
   </li>
   <% }}else{ %>
-    <nav  class="navbar container">
-      <a class="navbar-brand" style="text-decoration: none;" href="/"> <i class="fa-solid fa-gifts fa-3x"> </i> Gift Shop</a>
+
           <ul class="navbar-nav " >
             <li class="nav-item">
               <a class="nav-link " href="/products" >PRODUCTS</a>

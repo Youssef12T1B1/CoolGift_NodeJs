@@ -35,7 +35,7 @@ module.exports.create_product = (req,res)=>{
         return
     }
 
-  if(!req.files){imageFile = ""}
+  if(!req.files){imageFile = "" }
      else{
         var imageFile = typeof(req.files.image) !== "undefined" ? req.files.image.name : ""
     }
@@ -65,7 +65,7 @@ module.exports.create_product = (req,res)=>{
         mkdir('static/Images_Product/'+product._id + '/gallery/thumbs',(function(err){
             return console.log(err);
         }))
-
+      
         if(imageFile != ""){
             var productImage = req.files.image
             var path = 'static/Images_Product/'+product._id+ '/'+ imageFile
@@ -75,7 +75,6 @@ module.exports.create_product = (req,res)=>{
             })
 
         }
-       
 
         
 
@@ -111,6 +110,9 @@ module.exports.findCat = (req,res)=>{
 
     }else{
     Category.find()
+    .sort({
+        createdAt : 1
+    })
     .then(category=>{
         res.send(category)
     })
@@ -146,6 +148,9 @@ module.exports.findPro = (req,res)=>{
 
     }else{
     Product.find()
+    .sort({
+        createdAt : -1
+    })
     .then(product=>{
         res.send(product)
     })

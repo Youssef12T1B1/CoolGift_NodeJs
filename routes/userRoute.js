@@ -21,7 +21,9 @@ router.post('/signup', userController.signup_post )
 router.post('/login', userController.login_post )
 
 router.get('/logout', (req,res)=>{
+
     req.logout()
+    delete req.session.cart
     req.flash('success_msg', 'You are logged Out')
     res.redirect('/')
 })

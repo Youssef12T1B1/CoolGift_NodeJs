@@ -250,14 +250,18 @@ color : goldenrod;
   height: 55px;
   line-height: 45px;
 }
-#contact  a{
+#contact  .a{
   font-size: 1.8em;
   margin-top: 30px;
   border-radius: 12px;
   background: #fee996;
   border:0;
 }
-#contact a:hover{
+.showProduct h2{
+  text-align: center;
+  padding: 20px 30px;
+}
+#contact .a:hover{
   background-color: #02ABB0;
 }
 a{

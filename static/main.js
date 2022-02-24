@@ -55,7 +55,7 @@ $("#UpdateProject").submit(function(event){
 //     }
 // }
 
-if(window.location.pathname == '/admin/categories'){
+if(window.location.pathname == '/admin/Categories'){
     $ondelete = $(".table tbody td a.delete")
     $ondelete.click(function(){
       var id = $(this).attr("data-id")

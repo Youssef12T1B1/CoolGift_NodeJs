@@ -22,18 +22,26 @@ router.get('/products', (req,res)=>{
     })
   })
 
-  // router.get('/new_product"', (req, res)=>{
-   
-  //   axios.get('http://localhost:3000/api/products/')
-  //   .then(function(productData){
+  router.get('/new_product', (req,res)=>{
+    var categories 
+    axios.get('http://localhost:3000/api/products/')
+    .then(function(productData){
+      
+      
+    axios.get('http://localhost:3000/api/categories')
+    .then(function(response){
+         categories  =response.data
          
-  //        res.render('products', {products:productData.data})
+         res.render('new_products', {products:productData.data,categories:categories})
+      })
+       
   
-  //   })
-  //   .catch(err=>{
-  //       res.send(err)
-  //   })
-  // })
+    })
+    .catch(err=>{
+        res.send(err)
+    })
+  })
+
 
 
   

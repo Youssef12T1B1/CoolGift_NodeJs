@@ -10,13 +10,22 @@ const Product = require('../models/Product')
     Product.findOne({title:title}, (err,product)=>{
       if(err)
          console.log(err);
+      console.log(product.image);  
+
+      if(product.image == ""){
+       img = '/Images/default.png'
+      }
+      if(product.image !== ''){
+       img = '/Images_Product/' + product._id + '/' + product.image
+      }
+
       if(typeof req.session.cart == 'undefined'){
         req.session.cart= []
         req.session.cart.push({
           title: title,
           qty:1,
           price : parseFloat(product.price), 
-          Image : '/Images_Product/' + product._id + '/' + product.image
+          Image : img
 
           
           
@@ -38,13 +47,13 @@ const Product = require('../models/Product')
               title: title,
               qty:1,
               price : parseFloat(product.price),
-              Image : '/Images_Product' + product._id + '/' + product.image
+              Image :  img
             })
 
           }
         }
       
-      //console.log(req.session.cart);
+      console.log(req.session.cart);
       req.flash('success_msg','Product Added')
       res.redirect('back')
 
