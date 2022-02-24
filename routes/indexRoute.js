@@ -7,7 +7,12 @@ router.get('/', (req,res)=>{
     res.render('index')
 })
 
+router.get('/about_us', (req,res)=>{
+    res.render('about_us')
+})
 
+
+router.get('')
 router.post('/api/categories', adminController.create_category)
 router.put('/api/categories/:id', adminController.update_category)
 router.get('/api/categories', adminController.findCat)

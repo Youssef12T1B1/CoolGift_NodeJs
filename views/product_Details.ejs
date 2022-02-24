@@ -29,7 +29,7 @@
                         <% if(product.image == "") { %>
                             <img src="/Images/default.png" alt="" class="Product_Img">
                           
-                            <% }else { %>
+                            <% }else{ %>
                                 <img src="/Images_Product/<%= product._id %>/<%= product.image %>" alt="" class="Product_Img">
                                 <% } %>
                        
@@ -37,9 +37,13 @@
                 <li style="margin-top:10px;font-weight: bold; text-transform:uppercase;"><span><%= product.title %></span></li>
                 <li> <span><%= parseFloat(product.price) %> DH</span></li>
                 <li> <span><%= product.description %> </span></li>
+                
+                <% if (LoggedIn)  {%>
                
             <li><a href="/cart/add/<%= product.title %>"><span>Add To Card</span></a></li>
-    
-        </div>
+    <%} else {%>
+        <li style="margin: 30px 40px; font-weight: bold;">Logged In to purchase this Gift => <a href="/login">Login</a>  </li>
+    <% }%>   
+    </div>
            
     </div>

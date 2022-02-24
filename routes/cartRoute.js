@@ -73,7 +73,7 @@ const Product = require('../models/Product')
    var action = req.query.action
 
    for (var i =0 ; i< cart.length ; i++){
-     if( cart[i].title = title){
+     if( cart[i].title == title){
        switch(action) {
          case 'add':
            cart[i].qty++

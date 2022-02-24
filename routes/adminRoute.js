@@ -6,14 +6,16 @@ const resize_img = require('resize-img')
 const axios = require('axios')
 const Product = require('../models/Product') 
 const Category = require('../models/Category')
+const auth = require('../config/auth')
+const ensureAuthenticated = auth.ensureAuthenticated
 
-router.get('/add-category', (req,res)=>{
+router.get('/add-category', ensureAuthenticated , (req,res)=>{
   res.render('admin/add-category')
 })
 
 
 
-router.get('/add-product',(req,res)=>{
+router.get('/add-product', ensureAuthenticated, (req,res)=>{
   axios.get('http://localhost:3000/api/categories')
   .then(function(response){
       res.render('admin/add_product', {categories:response.data})
@@ -24,7 +26,7 @@ router.get('/add-product',(req,res)=>{
 })
 
 
-router.get('/products',(req,res)=>{
+router.get('/products', ensureAuthenticated,(req,res)=>{
   axios.get('http://localhost:3000/api/products')
   .then(function(response){
       res.render('admin/products', {products:response.data})
@@ -35,7 +37,7 @@ router.get('/products',(req,res)=>{
 })
 
 
-router.get('/categories', (req,res)=>{
+router.get('/categories', ensureAuthenticated,(req,res)=>{
   axios.get('http://localhost:3000/api/categories')
   .then(function(response){
       res.render('admin/categories', {categories:response.data})
@@ -45,7 +47,7 @@ router.get('/categories', (req,res)=>{
   })
 })
 
-router.get('/update-category', (req,res)=>{
+router.get('/update-category', ensureAuthenticated,(req,res)=>{
   axios.get('http://localhost:3000/api/categories/',{params:{id: req.query.id}})
   .then(function(categoryData){
       res.render('admin/update-category', {category:categoryData.data})
@@ -55,7 +57,7 @@ router.get('/update-category', (req,res)=>{
   })
 })
 
-router.get('/update-product', (req,res)=>{
+router.get('/update-product', ensureAuthenticated,(req,res)=>{
   var categories 
   axios.get('http://localhost:3000/api/products/',{params:{id: req.query.id}})
   .then(function(productData){

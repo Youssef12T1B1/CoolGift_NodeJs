@@ -22,6 +22,19 @@ router.get('/products', (req,res)=>{
     })
   })
 
+  // router.get('/new_product"', (req, res)=>{
+   
+  //   axios.get('http://localhost:3000/api/products/')
+  //   .then(function(productData){
+         
+  //        res.render('products', {products:productData.data})
+  
+  //   })
+  //   .catch(err=>{
+  //       res.send(err)
+  //   })
+  // })
+
 
   
   router.get('/product/:category', (req,res)=>{
@@ -49,7 +62,7 @@ router.get('/products', (req,res)=>{
   router.get('/product/:category/:product', (req,res)=>{
     var categories
     var product = req.params.product
-
+    var LoggedIn = (req.isAuthenticated()) ? true : false
     Product.findOne( {title:product},function(err, product){
       
       if(err)
@@ -60,7 +73,9 @@ router.get('/products', (req,res)=>{
               
               res.render('product_Details',{
                 product : product,
-                categories : categories
+                categories : categories,
+                LoggedIn : LoggedIn
+          
               }) 
            }) 
     })

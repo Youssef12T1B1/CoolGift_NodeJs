@@ -7,6 +7,8 @@ const userRoute = require('./routes/userRoute')
 const productRoute = require('./routes/productRoute')
 const adminRoute = require('./routes/adminRoute')
 const cartRoute = require('./routes/cartRoute')
+const contactRoute = require('./routes/contactRoute')
+
 const session = require('express-session');
 const flash = require('connect-flash/lib/flash');
 const passport = require('passport');
@@ -87,6 +89,7 @@ app.use(productRoute)
 
 app.use('/admin',adminRoute)
 app.use(cartRoute)
+app.use(contactRoute)
 const PORT = require('./config/.env').PORT || 5000
 
 
